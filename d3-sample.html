@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basics Of D3</title>
+
+    <style>
+      .circle {
+        fill: yellowgreen;
+        stroke: yellow;
+        stroke-width: 10px;
+      }
+      .rectangle {
+        fill: maroon;
+      }
+      .square {
+        fill: orange;
+        stroke: darkblue;
+        stroke-width: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <svg width="500" height="500">
+      <rect class="rectangle" x="0" y="0" width="500" height="500" />
+      <circle class="circle" cx="250" cy="250" r="50" />
+    </svg>
+  </body>
+  <script>
+    // Add event listener
+    let numberOfClicks = 0;
+    document.querySelector(".circle").addEventListener("click", () => {
+      numberOfClicks += 1;
+      console.log(`The Circle Was Clicked ${numberOfClicks} Times.`);
+    });
+
+    // Draw new object using DOM manipulation
+    var svg = document.querySelector("svg");
+    var newElement = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "rect"
+    );
+    newElement.setAttribute("x", "100");
+    newElement.setAttribute("y", "100");
+    newElement.setAttribute("width", "100");
+    newElement.setAttribute("height", "100");
+    newElement.setAttribute("class", "square");
+    svg.appendChild(newElement);
+  </script>
+</html>
