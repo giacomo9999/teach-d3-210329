@@ -2,13 +2,12 @@
   <title>Basics Of D3</title>
   <head>
     <script src="https://d3js.org/d3.v4.min.js"></script>
-    
+
     <style>
       svg rect {
         fill: orange;
       }
     </style>
-
   </head>
   <body></body>
   <script>
@@ -43,6 +42,6 @@
       .attr("width", (d) => {
         return d * scaleFactor;
       })
-      .attr("height", barHeight - 1);
+      .attr("height", barHeight);
   </script>
 </html>
