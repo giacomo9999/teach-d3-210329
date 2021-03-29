@@ -1,52 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
+  <title>Basics Of D3</title>
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Basics Of D3</title>
-
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    
     <style>
-      .circle {
-        fill: yellowgreen;
-        stroke: yellow;
-        stroke-width: 10px;
-      }
-      .rectangle {
-        fill: maroon;
-      }
-      .square {
+      svg rect {
         fill: orange;
-        stroke: darkblue;
-        stroke-width: 5px;
       }
     </style>
-  </head>
-  <body>
-    <svg width="500" height="500">
-      <rect class="rectangle" x="0" y="0" width="500" height="500" />
-      <circle class="circle" cx="250" cy="250" r="50" />
-    </svg>
-  </body>
-  <script>
-    // Add event listener
-    let numberOfClicks = 0;
-    document.querySelector(".circle").addEventListener("click", () => {
-      numberOfClicks += 1;
-      console.log(`The Circle Was Clicked ${numberOfClicks} Times.`);
-    });
 
-    // Draw new object using DOM manipulation
-    var svg = document.querySelector("svg");
-    var newElement = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "rect"
-    );
-    newElement.setAttribute("x", "100");
-    newElement.setAttribute("y", "100");
-    newElement.setAttribute("width", "100");
-    newElement.setAttribute("height", "100");
-    newElement.setAttribute("class", "square");
-    svg.appendChild(newElement);
+  </head>
+  <body></body>
+  <script>
+    let data = [5, 10, 12, 8, 17, 26];
+    let width = 1000,
+      scaleFactor = 10,
+      barHeight = 50,
+      spaceBetweenBars = 5;
+
+    let graph = d3
+      .select("body")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", (barHeight + spaceBetweenBars) * data.length);
+    console.log(graph);
+
+    let bars = graph
+      // Why do we need selectAll() if the elements don't even exist yet?
+      // Because in D3 instead of telling how to do something, we tell *what* we want.
+      // In this case, you want to associate each element with an element of the array. That's what you are saying with the selectAll().
+      .selectAll()
+      // .data = analogous to forEach
+      .data(data)
+      // .enter identifies any DOM elements that need to be added when the joined array is longer than the selection. It returns an enter selection which basically represents the elements that need to be added.
+      .enter()
+      // It’s usually followed by .append which adds elements to the DOM:
+      .append("rect")
+      .attr("transform", (d, i, offset = 5) => {
+        console.log(d, i);
+        return `translate(0,${i * (barHeight + spaceBetweenBars)})`;
+      })
+      .attr("width", (d) => {
+        return d * scaleFactor;
+      })
+      .attr("height", barHeight - 1);
   </script>
 </html>

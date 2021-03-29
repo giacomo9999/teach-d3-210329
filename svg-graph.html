@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basics Of SVG</title>
+
+    <style>
+      svg rect {
+        fill: maroon;
+      }
+    </style>
+    
+  </head>
+  <body></body>
+  <script>
+    let data = [5, 10, 12, 8, 17, 26];
+    let width = 1000,
+      scaleFactor = 10,
+      barHeight = 50,
+      spaceBetweenBars = 5;
+
+    let docBody = document.querySelector("body");
+    let svgCanvas = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "svg"
+    );
+    svgCanvas.setAttribute("width", width);
+    svgCanvas.setAttribute(
+      "height",
+      (barHeight + spaceBetweenBars) * data.length
+    );
+    docBody.appendChild(svgCanvas);
+
+    data.forEach((entry, index) => {
+      let newElement = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "rect"
+      );
+      newElement.setAttribute("x", "0");
+      newElement.setAttribute("y", index * (barHeight + spaceBetweenBars));
+      newElement.setAttribute("height", barHeight);
+      newElement.setAttribute("width", entry * scaleFactor);
+      svgCanvas.appendChild(newElement);
+    });
+  </script>
+</html>
