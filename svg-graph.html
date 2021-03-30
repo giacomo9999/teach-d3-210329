@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Basics Of SVG</title>
+    <title>JavaScript and SVG</title>
 
     <style>
       svg rect {
@@ -31,6 +31,7 @@
       (barHeight + spaceBetweenBars) * data.length
     );
     docBody.appendChild(svgCanvas);
+    console.log("Document Body: ", docBody);
 
     data.forEach((entry, index) => {
       let newElement = document.createElementNS(
@@ -41,11 +42,12 @@
       newElement.setAttribute("y", index * (barHeight + spaceBetweenBars));
       newElement.setAttribute("height", barHeight);
       newElement.setAttribute("width", entry * scaleFactor);
-    //   newElement.setAttribute(
-    //     "style",
-    //     entry % 2 === 0 ? "fill: green" : "fill: red"
-    //   );
+      //   newElement.setAttribute(
+      //     "style",
+      //     entry % 2 === 0 ? "fill: green" : "fill: red"
+      //   );
       svgCanvas.appendChild(newElement);
+      console.log("SVG Canvas: ", svgCanvas);
     });
   </script>
 </html>

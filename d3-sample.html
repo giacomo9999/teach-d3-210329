@@ -1,4 +1,9 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Basics Of D3</title>
   <head>
     <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -22,25 +27,25 @@
       .append("svg")
       .attr("width", width)
       .attr("height", (barHeight + spaceBetweenBars) * data.length);
-    console.log(graph);
+    console.log("Graph: ", graph);
 
     let bars = graph
-      // At this point, there are no span elements in the body. So this will return an empty array.
+      // At this point, there are no elements in the body. So this will return an empty array.
       .selectAll()
-      // .data = analogous to forEach
+      // .data = analogous to .map - joins data to selected object (in this case, graph).
       .data(data)
       // .enter identifies any DOM elements that need to be added when the joined array is longer than the selection. It returns an enter selection which represents the elements that need to be added.
       .enter()
       // It’s usually followed by .append which adds elements to the DOM:
       .append("rect")
       .attr("transform", (d, i, offset = 5) => {
-        console.log(d, i);
         return `translate(0,${i * (barHeight + spaceBetweenBars)})`;
       })
       .attr("width", (d) => {
         return d * scaleFactor;
       })
-      .attr("height", barHeight)
+      .attr("height", barHeight);
     //   .style("fill", (d) => (d % 2 === 0 ? "green" : "red"));
+    console.log("Bars: ", bars);
   </script>
 </html>
