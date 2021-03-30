@@ -41,6 +41,10 @@
       newElement.setAttribute("y", index * (barHeight + spaceBetweenBars));
       newElement.setAttribute("height", barHeight);
       newElement.setAttribute("width", entry * scaleFactor);
+    //   newElement.setAttribute(
+    //     "style",
+    //     entry % 2 === 0 ? "fill: green" : "fill: red"
+    //   );
       svgCanvas.appendChild(newElement);
     });
   </script>

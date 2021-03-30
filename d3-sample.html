@@ -25,13 +25,11 @@
     console.log(graph);
 
     let bars = graph
-      // Why do we need selectAll() if the elements don't even exist yet?
-      // Because in D3 instead of telling how to do something, we tell *what* we want.
-      // In this case, you want to associate each element with an element of the array. That's what you are saying with the selectAll().
+      // At this point, there are no span elements in the body. So this will return an empty array.
       .selectAll()
       // .data = analogous to forEach
       .data(data)
-      // .enter identifies any DOM elements that need to be added when the joined array is longer than the selection. It returns an enter selection which basically represents the elements that need to be added.
+      // .enter identifies any DOM elements that need to be added when the joined array is longer than the selection. It returns an enter selection which represents the elements that need to be added.
       .enter()
       // It’s usually followed by .append which adds elements to the DOM:
       .append("rect")
@@ -43,5 +41,12 @@
         return d * scaleFactor;
       })
       .attr("height", barHeight);
+    //   .style("fill", function (d) {
+    //     if (d % 2 === 0) {
+    //       return "green";
+    //     } else {
+    //       return "red";
+    //     }
+    //   });
   </script>
 </html>
